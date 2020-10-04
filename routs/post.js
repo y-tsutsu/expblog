@@ -30,9 +30,14 @@ exports.edit = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    posts[req.params.id] = {
+    posts[req.body.id] = {
         title: req.body.title,
         body: req.body.body,
     };
+    res.redirect('/');
+}
+
+exports.destroy = (req, res) => {
+    posts.splice(req.body.id, 1);
     res.redirect('/');
 }
