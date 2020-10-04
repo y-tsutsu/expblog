@@ -11,14 +11,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride((req, res) => {
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-        // look in urlencoded POST bodies and delete it
-        var method = req.body._method;
-        delete req.body._method;
-        return method;
-    }
-}));
+app.use(methodOverride('_method'));
 
 app.get('/', post.index);
 app.get('/posts/:id([0-9]+)', post.show);
