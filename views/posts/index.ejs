@@ -4,6 +4,12 @@
     <% for (let i = 0; i < posts.length; i++) {%>
     <li>
         <a href="/posts/<%= i %>"><%= posts[i].title %></a>
+        <a href="/posts/<%= i %>/edit">[Edit]</a>
+        <form method="POST" action="/posts/<%= i %>">
+            <input type="submit" value="Del">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="id" value="<%= i %>">
+        </form>
     </li>
     <% } %>
 </ul>

@@ -24,3 +24,15 @@ exports.create = (req, res) => {
     posts.push(post);
     res.redirect('/');
 }
+
+exports.edit = (req, res) => {
+    res.render('posts/edit', { post: posts[req.params.id], id: req.params.id });
+}
+
+exports.update = (req, res) => {
+    posts[req.params.id] = {
+        title: req.body.title,
+        body: req.body.body,
+    };
+    res.redirect('/');
+}
