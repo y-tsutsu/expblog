@@ -33,6 +33,10 @@ app.get('/posts/:id([0-9]+)/edit', post.edit);
 app.put('/posts/:id([0-9]+)', post.update);
 app.delete('/posts/:id', post.destroy);
 
+app.use((err, req, res, next) => {
+    res.send(err.message);
+});
+
 app.listen(3000);
 
 console.log('server listen starting ....');

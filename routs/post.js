@@ -29,7 +29,11 @@ exports.edit = (req, res) => {
     res.render('posts/edit', { post: posts[req.params.id], id: req.params.id });
 }
 
-exports.update = (req, res) => {
+exports.update = (req, res, next) => {
+    if (req.body.id !== req.params.id) {
+        next(new Error('ID not valid! '));
+        return;
+    }
     posts[req.body.id] = {
         title: req.body.title,
         body: req.body.body,
@@ -37,7 +41,11 @@ exports.update = (req, res) => {
     res.redirect('/');
 }
 
-exports.destroy = (req, res) => {
+exports.destroy = (req, res, next) => {
+    if (req.body.id !== req.params.id) {
+        next(new Error('ID not valid! '));
+        return;
+    }
     posts.splice(req.body.id, 1);
     res.redirect('/');
 }
