@@ -11,3 +11,16 @@ exports.index = (req, res) => {
 exports.show = (req, res) => {
     res.render('posts/show', { post: posts[req.params.id] });
 }
+
+exports.new = (req, res) => {
+    res.render('posts/new');
+}
+
+exports.create = (req, res) => {
+    var post = {
+        title: req.body.title,
+        body: req.body.body,
+    };
+    posts.push(post);
+    res.redirect('/');
+}
