@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride());
 
-// app.get('/', post.index);
+app.get('/', post.index);
 // app.get('/posts/new', post.new);
 // app.post('/posts/create', post.create);
 // app.get('/post/:id', post.show);
